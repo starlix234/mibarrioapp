@@ -13,13 +13,13 @@
     <article>
      <form  class="form" method="post">
                   <?php include("../Controlador/controlador-sesiones.php")?>
-                    <label for="usuario"></label>
+                    <img src="../assets/img/sinfondo.gif">
                     <input type="text" id="rut" class="texto" name="rut" placeholder="rut" value="" >              
                     <label for="contrasena"></label>
-                    <input id="clave" name="clave" placeholder="clave" value="" type="password">           
-             
-                    <input id="iniciar" class="boton" name="iniciar" class="iniciar" value="Iniciar sessión" type="submit">
-                     <a href="../Vista/vista-reguistrar-vecino.php"> Registrarse</a>
+                    <input id="clave" name="clave" placeholder="clave" value="" type="password">               
+                    <input id="iniciar" class="boton" name="iniciar" class="iniciar" value="Iniciar sesion" type="submit">
+                    <a href="../Vista/vista-reguistrar-vecino.php"> Registrarse</a>
+
      </form>         
 
     </article>
