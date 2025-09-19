@@ -60,7 +60,17 @@ body{
     color:white;
   
 }
-
+.error{
+        list-style: none;
+    text-decoration: none;
+    color:black;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size:1rem;
+   text-transform: capitalize;  
+   font-weight: bold;
+    color:white;
+    padding:10px;
+}
 .boton{
     padding:10px; 
     background-color: rgb(58, 58, 126);

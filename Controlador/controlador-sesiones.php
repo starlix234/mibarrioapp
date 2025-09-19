@@ -35,7 +35,7 @@
 		
 	}else  { 
         $error="Usuario/Clave no registrados";
-        echo $error;
+        echo "<span class='error'>".$error."</span>";
         //header('Location:../vista/.php?wrong='.$error);
 		
 	}
