@@ -33,7 +33,7 @@
     
     <label for="direccion">Dirección:</label><br>
     <input type="text" id="direccion" name="direccion" required><br><br>
-    <input type="submit" id="registrar" name="registrar">
+    <input type="submit" id="registrar" name="registrar" value="registrar">
 
 
 </form>

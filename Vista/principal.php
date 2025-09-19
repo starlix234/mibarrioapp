@@ -8,12 +8,10 @@
     <title>Vecino registrar</title>
 </head>
 <body>
-<div class="container">
- <div class="content">
- <div class="banner">
-			<h2>Mi barrio</h2>
-		</div>
-            <form  class="form" method="post">
+
+<main class="contenedor">
+    <article>
+     <form  class="form" method="post">
                   <?php include("../Controlador/controlador-sesiones.php")?>
                     <label for="usuario"></label>
                     <input type="text" id="rut" class="texto" name="rut" placeholder="rut" value="" >              
@@ -21,10 +19,13 @@
                     <input id="clave" name="clave" placeholder="clave" value="" type="password">           
              
                     <input id="iniciar" class="boton" name="iniciar" class="iniciar" value="Iniciar sessión" type="submit">
-                     <a href="../vista/registrar-vecino.php"> Registrarse</a>
-            </form>           
-    </div>
-</div>    
+                     <a href="../Vista/vista-reguistrar-vecino.php"> Registrarse</a>
+     </form>         
+
+    </article>
+</main>
+
+  
 </body>
 </html>
 
