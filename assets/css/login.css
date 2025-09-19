@@ -4,6 +4,12 @@ body{
   /*background-color:black;*/
     background-repeat: no-repeat;
     background-size: cover;
+    
+}
+.container-principal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .contenedor{
@@ -11,6 +17,7 @@ body{
     justify-content: center;
     background-color: rgba(151, 15, 15, 0.171);
     align-items: center;
+    width:50%;
 }
 .contenedor form {
     display: flex;
@@ -28,7 +35,7 @@ body{
   color:black;
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   font-size:1rem;
-  text-transform: capitalize;
-  
+  text-transform: capitalize;  
 }
+
 

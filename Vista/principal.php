@@ -8,8 +8,8 @@
     <title>Vecino registrar</title>
 </head>
 <body>
-
-<main class="contenedor">
+<section class="container-principal">
+    <main class="contenedor">
     <article>
      <form  class="form" method="post">
                   <?php include("../Controlador/controlador-sesiones.php")?>
@@ -24,6 +24,9 @@
 
     </article>
 </main>
+
+
+</section>
 
   
 </body>
