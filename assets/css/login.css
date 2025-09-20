@@ -1,7 +1,7 @@
 
 body{
     background-image:url("../img/ciudad.png");
-  /*background-color:black;*/
+    /*background: linear-gradient(rgb(115, 115, 179), pink,red);*/
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 100vh; /* Se asegura de centrar todo en la pantalla */
@@ -19,7 +19,7 @@ body{
 .contenedor{
      display: flex;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.171);
+    background-color: rgba(255, 255, 255, 0.304);
     align-items: center;
     width: 90%; /* Usa un ancho mayor para móviles */
     max-width: 400px; /* Establece un ancho máximo para pantallas de escritorio */
