@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-09-2025 a las 00:58:50
+-- Tiempo de generación: 21-09-2025 a las 21:34:27
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -127,20 +127,17 @@ CREATE TABLE `usuarios` (
   `clave` varchar(20) DEFAULT NULL,
   `id_rol` int(11) NOT NULL,
   `rut` varchar(40) DEFAULT NULL,
-  `direccion` varchar(35) DEFAULT NULL
+  `direccion` varchar(35) DEFAULT NULL,
+  `foto` varchar(2000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `primer_nombre`, `segundo_nombre`, `ape_paterno`, `ape_materno`, `fecha_nac`, `telefono`, `clave`, `id_rol`, `rut`, `direccion`) VALUES
-(1, 'Pedro', 'Gallardo', 'Peres', 'Jofre', '1996-06-18', 94567890, 'admin1234', 1, 'admin', 'los jacintos 1'),
-(2, 'Javier', 'Gallardos', 'Peres', 'Jofres', '1996-06-13', 1234354, 'admin1234', 2, 'juancho', 'sdsdsd'),
-(3, 'Juanito ', 'Fernado', 'Fuentes', 'Torres', '2001-09-12', 55544324, '1234', 3, '20329998-6', NULL),
-(1234358, 'Pedro', 'Gallardo', 'Peres', 'Jofre', '2025-09-03', 2445565, '354565', 3, '20.623.452-2', 'Jofressadas'),
-(1234359, 'Mateo', 'se pitio ', 'a su papa', 'se fue por cigarros', '1994-09-20', 942971785, '12345', 3, '11-205-234-6', 'deja doxeamer'),
-(1234360, 'Mateos', 'se pitio  un', 'a su papa', 'se fue por cigarros', '1994-09-20', 942971785, '2343455', 3, '11-205-234-6', 'deja doxeamer');
+INSERT INTO `usuarios` (`id_usuario`, `primer_nombre`, `segundo_nombre`, `ape_paterno`, `ape_materno`, `fecha_nac`, `telefono`, `clave`, `id_rol`, `rut`, `direccion`, `foto`) VALUES
+(1, 'Pedro ', 'Juan', 'Fernandez', 'smith', '1994-09-27', 942971785, '1234', 1, '20.623.455-2', 'los casiques 1124', 'https://www.shutterstock.com/image-photo/global-warming-climate-change-concept-600nw-2601274575.jpg'),
+(2, 'Anastacia', 'Fernanda', 'Smith', 'Peres', '1995-08-19', 942971785, '1234', 3, '20.766.999-2', 'vivo en casiques', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -225,7 +222,7 @@ ALTER TABLE `solicitudes`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1234361;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas

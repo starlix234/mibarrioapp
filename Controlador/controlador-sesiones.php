@@ -7,15 +7,7 @@
 		if($t=$resource->num_rows){
 		$row=$resource->fetch_assoc();
         $_SESSION['id_usuario']=$row['id_usuario'];
-		$_SESSION['primer_nombre']=$row['primer_nombre'];
-        $_SESSION['segundo_nombre']=$row['segundo_nombre'];
-        $_SESSION['ape_paterno']=$row['ape_paterno'];
-        $_SESSION['ape_materno']=$row['ape_materno'];
-        $_SESSION["id_rol"]=$row['id_rol']; 
-        //$_SESSION['rut']=$datos->rut; 
-        //$_SESSION['telefono']=$datos->telefono;
-        //$_SESSION['fecha_nac']=$datos->fecha_nac;
-        //$_SESSION["id_rol"]=$datos->id_rol;
+	    $_SESSION["id_rol"]=$row['id_rol'];        
         if($row['id_rol']==1){
             header('Location:../Vista/vista-admin.php');
         }
@@ -23,13 +15,9 @@
 			if($row['id_rol']==2){
                 header('Location:../Vista/vista-jefe-Vecinos.php');
             }else if($row['id_rol']==3){
-                    header('Location:../medico.php');               
+                    header('Location:../vista/vista-miembro-vecino.php');               
                 
-            }else if($row['id_rol']==4){
-                header('Location:../secretario.php');        
-            }
-          
-            
+            }           
 
         }
 		
