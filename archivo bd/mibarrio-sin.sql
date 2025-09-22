@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-09-2025 a las 01:28:59
+-- Tiempo de generación: 21-09-2025 a las 21:34:27
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -126,10 +126,18 @@ CREATE TABLE `usuarios` (
   `telefono` int(11) NOT NULL,
   `clave` varchar(20) DEFAULT NULL,
   `id_rol` int(11) NOT NULL,
-  `rut` varchar(40) NOT NULL,
+  `rut` varchar(40) DEFAULT NULL,
   `direccion` varchar(35) DEFAULT NULL,
   `foto` varchar(2000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `primer_nombre`, `segundo_nombre`, `ape_paterno`, `ape_materno`, `fecha_nac`, `telefono`, `clave`, `id_rol`, `rut`, `direccion`, `foto`) VALUES
+(1, 'Pedro ', 'Juan', 'Fernandez', 'smith', '1994-09-27', 942971785, '1234', 1, '20.623.455-2', 'los casiques 1124', 'https://www.shutterstock.com/image-photo/global-warming-climate-change-concept-600nw-2601274575.jpg'),
+(2, 'Anastacia', 'Fernanda', 'Smith', 'Peres', '1995-08-19', 942971785, '1234', 3, '20.766.999-2', 'vivo en casiques', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -174,8 +182,6 @@ ALTER TABLE `solicitudes`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id_usuario`),
-  ADD UNIQUE KEY `rut` (`rut`),
-  ADD UNIQUE KEY `rut_2` (`rut`),
   ADD KEY `id_rol` (`id_rol`);
 
 --
