@@ -6,7 +6,17 @@
     <title>Agregar-noticia</title>
 </head>
 <body>
-    
+    <form action="" method="">
+    <input type="text" name="" id="">
+    <input type="text" name="" id="">
+    <input type="text" name="" id="">
+    <input type="text" name="" id="">
+    <input type="text" name="" id="">
+    <input type="text" name="" id="">
+    <input type="text" name="" id="">
+    <input type="text" name="" id="">
+
+    </form>
     
 </body>
 </html>
