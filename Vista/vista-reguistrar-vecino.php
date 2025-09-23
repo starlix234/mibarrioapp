@@ -30,7 +30,7 @@
     <input type="submit" id="registrar" name="registrar" class="boton-registro" value="registrar"><br><br>
 </form>
 
-
+<script src="validador-edad-rut.js"></script>
 
 </body>
 </html>
