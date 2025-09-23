@@ -1,0 +1,78 @@
+
+body{
+    background-image:url("../img/ciudad.png");
+    /*background: linear-gradient(rgb(115, 115, 179), pink,red);*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh; /* Se asegura de centrar todo en la pantalla */
+    margin: 0;
+    overflow: hidden;
+    
+}
+.container-principal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:50px;
+}
+
+.contenedor{
+     display: flex;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.304);
+    align-items: center;
+    width: 90%; /* Usa un ancho mayor para móviles */
+    max-width: 400px; /* Establece un ancho máximo para pantallas de escritorio */
+    padding: 20px;    
+    border-radius:4px;
+}
+
+.contenedor form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+}
+.contenedor form img {
+    padding:10px;
+    width:70%;
+}
+.contenedor form input{
+  padding:10px; 
+  margin:4px;
+  border-radius:5px;
+  border:none;
+}
+.contenedor form input::placeholder{
+  color:black;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size:1rem;
+  text-transform: capitalize;  
+}
+.contenedor form a {
+    list-style: none;
+    text-decoration: none;
+    color:black;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size:1rem;
+   text-transform: capitalize;  
+   font-weight: bold;
+    color:white;
+  
+}
+.error{
+        list-style: none;
+    text-decoration: none;
+    color:black;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size:1rem;
+   text-transform: capitalize;  
+   font-weight: bold;
+    color:white;
+    padding:10px;
+}
+.boton{
+    padding:10px; 
+    background-color: rgb(58, 58, 126);
+    color:white;
+}
