@@ -25,7 +25,7 @@ if ($row['total'] > 0) {
     echo "El RUT ya está registrado.";
 } else {
     if (insertarUsuario($conn, $primer_nombre, $segundo_nombre, $ape_paterno, $ape_materno, $fecha_nac, $telefono, $clave, $rut, $direccion)) {
-        echo "Usuario registrado correctamente.";
+        header("Location:../vista/vista-miembro-vecino.php");
     } else {
         echo "Error al registrar usuario.";
     }
