@@ -8,28 +8,25 @@ $descripcion_corta = $_POST['descripcion_corta'];
 $contenido         = $_POST['contenido'];
 $imagen_url = '';
 if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == UPLOAD_ERR_OK) {
-    $nombreArchivo = uniqid('img_') . '_' . basename($_FILES['imagen']['name']);
-    $rutaDestino = __DIR__ . '/../assets/galeria/' . $nombreArchivo;
-    if (file_exists($rutaDestino)) {
-        echo '<div style="color:red;">Error: La imagen ya existe en la galería.</div>';
-        $imagen_url = '';
-    } else if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaDestino)) {
-        $imagen_url = '../assets/galeria/' . $nombreArchivo;
+    $nombreArchivo = basename($_FILES['imagen']['name']);
+    $rutaDestino = '../assets/galeria/' . $nombreArchivo;
+    if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutaDestino)) {
+        // Guardar la ruta relativa para la base de datos
+        $imagen_url = 'assets/galeria/' . $nombreArchivo;
     } else {
         $imagen_url = '';
     }
 } else {
     $imagen_url = '';
 }
-$autor             = $_POST['autor'];
+$autor= $_POST['autor'];
 
 // Llamada al modelo
 $resultado = insertarNoticia($conn, $titulo, $descripcion_corta, $contenido, $imagen_url, $autor);
 
 // Respuesta
 if (is_numeric($resultado)) {
-    header('Location: ../Vista/index.php');
-    exit();
+    echo "Noticia insertada correctamente con ID: " . $resultado;
 } else {
-    echo $resultado; // mensaje de error;
+    echo $resultado; // mensaje de error
 }

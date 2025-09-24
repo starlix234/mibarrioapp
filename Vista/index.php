@@ -1,11 +1,11 @@
 <?php include('../Controlador/controlador-mostrar-noticia.php')?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Proyecto con Bootstrap</title>
+    <?php include("../Controlador/controlador-datos-principal.php")?>
     <!-- Bootstrap CSS desde CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
@@ -15,7 +15,8 @@
     <header>
    <section>
    
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-menu">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-menu">  
+
   <div class="container-fluid">
  <img class="navbar-brand logo" src="https://media.discordapp.net/attachments/1414711851052175562/1420250981538599032/image.png?ex=68d4b74c&is=68d365cc&hm=f2095593ee7af9d84317ba9cc43cd57f56fedd1cf37c6a0fecccdbdf082955d7&=&format=webp&quality=lossless">
 
@@ -23,15 +24,28 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav mx-auto">
-        <a class="nav-link" href="#">Inicio</a>
-        <a class="nav-link" href="#">Postulaciones</a>
-        <a class="nav-link" href="#">Certificado</a>
-        <a class="nav-link" href="../Vista/principal.php">Login</a>
-
-
-
-      </div>
+    <div class="navbar-nav mx-auto">
+    <a class="nav-link" href="#">Inicio</a>
+    <a class="nav-link" href="#">Postulaciones</a>
+    <a class="nav-link" href="#">Certificado</a>
+    <?php
+    if(!isset($_SESSION)) session_start();
+    if(isset($_SESSION['id_usuario'])) {
+      // Obtener rol
+      $rol = isset($_SESSION['id_rol']) ? $_SESSION['id_rol'] : null;
+      if($rol == 1) {
+        echo '<a class="nav-link" href="../Vista/vista-admin.php">Panel Admin</a>';
+      } elseif($rol == 2) {
+        echo '<a class="nav-link" href="../Vista/vista-jefe-vecinos.php">Panel Jefe Vecinos</a>';
+      } elseif($rol == 3) {
+        echo '<a class="nav-link" href="../Vista/vista-miembro-vecino.php">Panel Miembro Vecino</a>';
+      }
+      echo '<a class="nav-link" href="../Controlador/controlador-cerrar-sesion.php">Cerrar sesión</a>';
+    } else {
+      echo '<a class="nav-link" href="../Vista/principal.php">Login</a>';
+    }
+    ?>
+    </div>
     </div>
   </div>
 </nav>
@@ -43,34 +57,89 @@
 
 
     <main>
-    <section class="centrar">
+  <section class="centrar">
+  <?php
+  if(!isset($_SESSION)) session_start();
+  $esAdmin = (isset($_SESSION['id_rol']) && $_SESSION['id_rol'] == 1);
+  if($esAdmin) {
+    echo '<div style="text-align:center; margin-bottom:20px;">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPublicarNoticia">Publicar noticia</button>
+    </div>';
+    // Modal con include del formulario
+    echo '
+    <div class="modal fade" id="modalPublicarNoticia" tabindex="-1" aria-labelledby="modalPublicarNoticiaLabel" aria-hidden="true">
+      <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="modalPublicarNoticiaLabel">Agregar Noticia</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">';
+    include('vista-agregar-noticia.php');
+    echo '  </div>
+      </div>
+      </div>
+    </div>';
+  }
+  ?>
+ <main>
+  <section class="centrar">
+    <?php
+    if(!isset($_SESSION)) session_start();
+    $esAdmin = (isset($_SESSION['id_rol']) && $_SESSION['id_rol'] == 1);
+
+    // Botón "Publicar noticia" solo para admin
+    if($esAdmin) {
+      echo '
+      <div class="modal fade" id="modalPublicarNoticia" tabindex="-1" aria-labelledby="modalPublicarNoticiaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="modalPublicarNoticiaLabel">Agregar Noticia</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">';
+      include('vista-agregar-noticia.php');
+      echo '  </div>
+        </div>
+        </div>
+      </div>';
+    }
+    ?>
+
     <div class="row justify-content-center p-4 tarjeta">
-<?php 
-while($m = $mostrar->fetch_assoc()){ 
-?>
-    <div class="col-md-4 mb-4"> <!-- Cada card ocupa 4 columnas, puedes ajustar -->
-        <div class="card shadow-lg h-100">
+      <?php
+      while($m = $mostrar->fetch_assoc()){ 
+      ?>
+        <div class="col-md-4 mb-4">
+          <div class="card shadow-lg h-100">
             <img src="<?php echo $m['imagen']; ?>" class="card-img-top" alt="Imagen de <?php echo htmlspecialchars($m['titulo']); ?>">
             <div class="card-body">
-                <h5 class="card-title"><?php echo date("F d, Y", strtotime($m['fecha_publicacion'])); ?></h5>
-                <h6><?php echo htmlspecialchars($m['titulo']); ?></h6>
-                <p class="card-text"><?php echo htmlspecialchars($m['descripcion_corta']); ?></p>
-                <p class="text-muted">Por: <?php echo htmlspecialchars($m['primer_nombre'] . " " . $m['segundo_nombre'] . " " . $m['ape_paterno']); ?></p>
-                 <a href="" class="boton">Leer mas</a>
+              <h5 class="card-title"><?php echo date("F d, Y", strtotime($m['fecha_publicacion'])); ?></h5>
+              <h6><?php echo htmlspecialchars($m['titulo']); ?></h6>
+              <p class="card-text"><?php echo htmlspecialchars($m['descripcion_corta']); ?></p>
+              <p class="text-muted">Por: <?php echo htmlspecialchars($m['primer_nombre'] . " " . $m['segundo_nombre'] . " " . $m['ape_paterno']); ?></p>
+              <a href="">Leer mas</a>
+              <!-- Botones según rol -->
+              <?php if($esAdmin) { ?>
+                <form action="../Controlador/controlador-eliminar-noticia.php" method="post" onsubmit="return confirm('¿Desea eliminar esta noticia?');">
+                <input type="hidden" name="id_noticia" value="<?php echo $m['id_noticia']; ?>">
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+                 </form>
+
+              <?php } else { ?>
+                <a href="noticia-detalle.php?id=<?php echo $m['id_noticia']; ?>" class="btn btn-info">Leer más</a>
+              <?php } ?>
+
             </div>
+          </div>
         </div>
+      <?php
+      }
+      ?>
     </div>
-<?php 
-}
-?>
-</div>
-</section>
- </main>
-  
-
-
-
-
+  </section>
+</main>
 
 
     <!-- Bootstrap JS + Popper.js desde CDN -->

@@ -11,7 +11,7 @@ function insertarNoticia($conn, $titulo, $descripcion_corta, $contenido, $imagen
         die("Error en la preparación: " . $conn->error);
     }
 
-    $stmt->bind_param("sssssss", $titulo, $descripcion_corta, $contenido, $imagen, $autor);
+    $stmt->bind_param("ssssi", $titulo, $descripcion_corta, $contenido, $imagen, $autor);
 
     if ($stmt->execute()) {
         $insert_id = $conn->insert_id; // devolvemos el ID autogenerado

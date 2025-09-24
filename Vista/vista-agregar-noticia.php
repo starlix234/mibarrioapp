@@ -1,8 +1,4 @@
-
-<?php include('../Controlador/controlador-iniciar-admin.php');
- ;
-
-?>
+<?php include('../Controlador/controlador-iniciar-admin.php');?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,13 +7,23 @@
     <title>Agregar-noticia</title>
 </head>
 <body>
-    <form action="../Controlador/controlador-agregar-noticia.php" method="post">
-    <input type="text" name="titulo" id="titulo">
-    <input type="text" name="descripcion_corta" id="descripcion_corta">
-    <input type="text" name="contenido" id="contenido">
-    <input type="text" name="imagen" id="imagen">
-    <input type="hidden" name="autor" id="autor" value="<?php echo $_SESSION['id_usuario']?> ">
-    <input type="submit" name="guardar" id="guardar">
+    <h2>Agregar Noticia</h2>
+    <form action="../Controlador/controlador-agregar-noticia.php" method="post" enctype="multipart/form-data" style="max-width:400px; margin:auto;">
+        <label for="titulo">Título:</label><br>
+        <input type="text" name="titulo" id="titulo" required><br><br>
+
+        <label for="descripcion_corta">Descripción corta:</label><br>
+        <input type="text" name="descripcion_corta" id="descripcion_corta" maxlength="100" required><br><br>
+
+        <label for="contenido">Contenido:</label><br>
+        <textarea name="contenido" id="contenido" rows="5" required></textarea><br><br>
+
+        <label for="imagen">Imagen:</label><br>
+        <input type="file" name="imagen" id="imagen" accept="image/*"><br><br>
+
+        <input type="hidden" name="autor" id="autor" value="<?php echo $_SESSION['id_usuario']?>">
+
+        <input type="submit" name="guardar" id="guardar" value="Guardar Noticia">
     </form>
     
 </body>
