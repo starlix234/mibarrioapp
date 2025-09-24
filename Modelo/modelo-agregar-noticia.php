@@ -1,9 +1,9 @@
 <?php
-function insertarNoticia($conn, $titulo, $descripcion_corta, $contenido, $imagen, $autor, $categoria, $estado)
+function insertarNoticia($conn, $titulo, $descripcion_corta, $contenido, $imagen, $autor)
 {
     $sql = "INSERT INTO noticias 
-            (titulo, descripcion_corta, contenido, imagen, fecha_publicacion, autor, categoria, estado) 
-            VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, ?, ?, ?)";
+            (titulo, descripcion_corta, contenido, imagen, fecha_publicacion, autor) 
+            VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, ?)";
 
     $stmt = $conn->prepare($sql);
 
@@ -11,7 +11,7 @@ function insertarNoticia($conn, $titulo, $descripcion_corta, $contenido, $imagen
         die("Error en la preparación: " . $conn->error);
     }
 
-    $stmt->bind_param("sssssss", $titulo, $descripcion_corta, $contenido, $imagen, $autor, $categoria, $estado);
+    $stmt->bind_param("sssssss", $titulo, $descripcion_corta, $contenido, $imagen, $autor);
 
     if ($stmt->execute()) {
         $insert_id = $conn->insert_id; // devolvemos el ID autogenerado

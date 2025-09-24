@@ -8,11 +8,9 @@ $descripcion_corta = $_POST['descripcion_corta'];
 $contenido         = $_POST['contenido'];
 $imagen            = $_POST['imagen'];
 $autor             = $_POST['autor'];
-$categoria         = $_POST['categoria'];
-$estado            = $_POST['estado'];
 
 // Llamada al modelo
-$resultado = insertarNoticia($conn, $titulo, $descripcion_corta, $contenido, $imagen, $autor, $categoria, $estado);
+$resultado = insertarNoticia($conn, $titulo, $descripcion_corta, $contenido, $imagen, $autor);
 
 // Respuesta
 if (is_numeric($resultado)) {
