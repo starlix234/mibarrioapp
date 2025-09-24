@@ -1,0 +1,43 @@
+:root{
+    --color1:#f5b644;
+    --color2:#4a87bb;
+    --color3:#f96b83; 
+    --color4: #1c9c8c;
+}
+
+
+.centrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg-menu{
+    background-color: var(--color4);
+}
+.bg-menu ul li a {
+    color:black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+}
+.bg-menu ul li a:hover{
+    color:rgb(255, 255, 255);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+}
+
+.boton{
+    padding:10px; 
+    background-color:var(--color2);
+    color:white;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+body{
+    background-color:var(--color4);
+}
+.logo {
+  width:20%;
+ 
+}
+    

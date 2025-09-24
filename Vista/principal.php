@@ -19,7 +19,6 @@
                     <input id="iniciar" class="boton" name="iniciar" class="iniciar" value="Iniciar sesion" type="submit">
                     <?php include("../Controlador/controlador-sesiones.php")?>
                     <a href="../Vista/vista-reguistrar-vecino.php"> Registrarse</a>
-
      </form>         
 
     </article>
