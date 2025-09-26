@@ -11,6 +11,7 @@
 </head>
 <body>
 <?php include("../Controlador/controlador-mostrar-noticia.php")?>
+
 <header>
 <?php if(!isset($_SESSION)) session_start(); ?>
 <nav class="navbar navbar-expand-lg bg-body-tertiary bg-menu">  
@@ -21,7 +22,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav mx-auto">
-        <a class="nav-link" href="#">Inicio</a>
+        <a class="nav-link" href="../vista/index.php">Inicio</a>
         <a class="nav-link" href="#">Postulaciones</a>
         <a class="nav-link" href="#">Certificado</a>
         <?php
@@ -60,6 +61,9 @@
 
 </section>
 <a href="../Vista/index.php">Volver al inicio</a>
+<?php
+if (isset($_SESSION['id_usuario']) && isset($_SESSION['id_rol']) && $_SESSION['id_rol'] == 1) {
+?>
 <!-- Botón para abrir la modal -->
 <div class="text-center" style="margin-top: 30px;">
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEditarNoticia">
@@ -80,6 +84,7 @@
     </div>
   </div>
 </div>
+<?php } ?>
 <!-- Bootstrap JS y dependencias -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

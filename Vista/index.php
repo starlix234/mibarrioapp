@@ -130,7 +130,6 @@
                  </form> 
 
               <?php } else { ?>
-                <a href="../vista/vista-interior-noticia.php?id=<?php echo $m['id_noticia']; ?>" class="btn btn-info">Leer más</a>
               <?php } ?>
 
             </div>

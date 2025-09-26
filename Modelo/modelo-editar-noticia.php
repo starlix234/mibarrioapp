@@ -1,12 +1,22 @@
-<?php           
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $id_noticia = $_POST['id_noticia'];
-    $titulo = $_POST['titulo'];
-    $contenido = $_POST['contenido'];
-    $imagen = $_FILES['imagen']['name'];
+<?php
+function editarNoticia($conexion, $id, $titulo, $descripcion_corta, $contenido, $imagen) {
+    $sql = "UPDATE noticias 
+            SET titulo = ?, descripcion_corta = ?, contenido = ?, imagen = ?
+            WHERE id_noticia = ?";
 
-    // Lógica para actualizar la noticia en la base de datos
-    // ...
+    $stmt = $conexion->prepare($sql);
+    if (!$stmt) {
+        return "Error en la preparación: " . $conexion->error;
+    }
 
-    // Redirigir o mostrar un mensaje de éxito
+    $stmt->bind_param("ssssi", $titulo, $descripcion_corta, $contenido, $imagen, $id);
+
+    if ($stmt->execute()) {
+        return true;
+    } else {
+        return "Error al actualizar: " . $stmt->error;
+    }
+
+    $stmt->close();
 }
+?>

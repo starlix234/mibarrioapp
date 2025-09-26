@@ -22,7 +22,7 @@
         <textarea id="contenido" name="contenido" required><?php echo htmlspecialchars($fila2['contenido']); ?></textarea>
         
         <label for="imagen">Imagen Actual:</label>
-        <img src="../assets/img/<?php echo htmlspecialchars($fila2['imagen']); ?>" alt="Imagen de la noticia" style="max-width: 200px;">
+        <img src="<?php echo htmlspecialchars($fila2['imagen']); ?>" alt="Imagen de la noticia" style="max-width: 200px;">
         
         <label for="nueva_imagen">Cambiar Imagen:</label>
         <input type="file" id="nueva_imagen" name="nueva_imagen">

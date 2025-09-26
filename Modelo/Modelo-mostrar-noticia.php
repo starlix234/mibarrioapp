@@ -15,4 +15,6 @@ $consulta2="select n.id_noticia,u.primer_nombre,
 
 
 
+
+
 ?>
