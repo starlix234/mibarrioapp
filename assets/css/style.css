@@ -36,8 +36,8 @@
 body{
     background-color:var(--color4);
 }
-.logo {
-  width:20%;
- 
+.logo{
+    width:140px;
+    height: auto;
+
 }
-    

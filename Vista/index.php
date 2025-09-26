@@ -15,10 +15,11 @@
     <header>
    <section>
    
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-menu">  
+  <nav class="navbar navbar-expand-lg bg-body-tertiary bg-menu">  
 
   <div class="container-fluid">
- <img class="navbar-brand logo" src="https://media.discordapp.net/attachments/1414711851052175562/1420250981538599032/image.png?ex=68d4b74c&is=68d365cc&hm=f2095593ee7af9d84317ba9cc43cd57f56fedd1cf37c6a0fecccdbdf082955d7&=&format=webp&quality=lossless">
+ <img class="logo" src="../assets/img/logo2.png" alt="Logo Mi Barrio">
+    
 
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -119,16 +120,17 @@
               <h6><?php echo htmlspecialchars($m['titulo']); ?></h6>
               <p class="card-text"><?php echo htmlspecialchars($m['descripcion_corta']); ?></p>
               <p class="text-muted">Por: <?php echo htmlspecialchars($m['primer_nombre'] . " " . $m['segundo_nombre'] . " " . $m['ape_paterno']); ?></p>
-              <a href="">Leer mas</a>
+              <a href="../vista/vista-interior-noticia.php?id=<?php echo $m['id_noticia']; ?>" class="btn btn-info">Leer más</a>
+
               <!-- Botones según rol -->
               <?php if($esAdmin) { ?>
                 <form action="../Controlador/controlador-eliminar-noticia.php" method="post" onsubmit="return confirm('¿Desea eliminar esta noticia?');">
                 <input type="hidden" name="id_noticia" value="<?php echo $m['id_noticia']; ?>">
                 <button type="submit" class="btn btn-danger">Eliminar</button>
-                 </form>
+                 </form> 
 
               <?php } else { ?>
-                <a href="noticia-detalle.php?id=<?php echo $m['id_noticia']; ?>" class="btn btn-info">Leer más</a>
+                <a href="../vista/vista-interior-noticia.php?id=<?php echo $m['id_noticia']; ?>" class="btn btn-info">Leer más</a>
               <?php } ?>
 
             </div>
