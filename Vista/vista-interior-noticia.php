@@ -1,15 +1,14 @@
-<?php include("../Controlador/controlador-datos-principal.php")?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noticia Interior</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-interior">
 <?php include("../Controlador/controlador-mostrar-noticia.php")?>
 
 <header>
@@ -20,6 +19,8 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+ <?php include("../Controlador/controlador-datos-principal.php")?>
+
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav mx-auto">
         <a class="nav-link" href="../vista/index.php">Inicio</a>
@@ -45,9 +46,6 @@
   </div>
 </nav>
 </header>
-
-
-
 <section>
     <?php while ($m2 = $mostrar2->fetch_assoc()) { ?>
      <article>

@@ -1,41 +1,8 @@
-body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: #f4f6f8;
-    margin: 0;
-    padding: 0;
+.logo{
+    width:140px;
+    height: auto;
+
 }
-.noticia-interior-container {
-    max-width: 700px;
-    margin: 40px auto;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    border-radius: 10px;
-    padding: 32px;
-}
-.noticia-interior-meta {
-    display: flex;
-    justify-content: space-between;
-    font-size: 1em;
-    color: #888;
-    margin-bottom: 18px;
-}
-.noticia-interior-img {
-    text-align: center;
-    margin-bottom: 24px;
-}
-.noticia-interior-img img {
-    max-width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
-}
-.noticia-interior-contenido {
-    font-size: 1.15em;
-    color: #333;
-    line-height: 1.7;
-    margin-top: 10px;
-}
-@media (max-width: 600px) {
-    .noticia-interior-container {
-        padding: 12px;
-    }
+.body{
+    background-color:black;
 }

@@ -7,14 +7,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $titulo = $_POST['titulo'];
     $descripcion_corta = $_POST['descripcion_corta'];
     $contenido = $_POST['contenido'];
-    $imagen = isset($_FILES['nueva_imagen']) && $_FILES['nueva_imagen']['error'] == 0
-        ? '../assets/galeria/' . basename($_FILES['nueva_imagen']['name'])
-        : (isset($_POST['imagen_actual']) ? $_POST['imagen_actual'] : null);
 
-    // Si hay imagen nueva, moverla al directorio galeria
+    // Mantener la imagen actual si no se sube una nueva
     if (isset($_FILES['nueva_imagen']) && $_FILES['nueva_imagen']['error'] == 0) {
-        $ruta_destino = '../assets/galeria/' . basename($_FILES['nueva_imagen']['name']);
+        $imagen = '../assets/galeria/' . basename($_FILES['nueva_imagen']['name']);
+        $ruta_destino = $imagen;
         move_uploaded_file($_FILES['nueva_imagen']['tmp_name'], $ruta_destino);
+    } else {
+        $imagen = isset($_POST['imagen_actual']) ? $_POST['imagen_actual'] : null;
     }
 
     $resultado = editarNoticia($conn, $id, $titulo, $descripcion_corta, $contenido, $imagen);
@@ -23,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "noticia actualizada con éxito.";
         header("Location: ../Vista/index.php");
         exit;
-    
     } else {
         echo $resultado;
     }
