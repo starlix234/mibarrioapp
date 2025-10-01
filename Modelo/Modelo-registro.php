@@ -1,24 +1,46 @@
-
 <?php
-// Recibir datos del formulario
-$primer_nombre  = $_POST['primer_nombre'];
-$segundo_nombre = $_POST['segundo_nombre'];
-$ape_paterno    = $_POST['ape_paterno'];
-$ape_materno    = $_POST['ape_materno'];
-$fecha_nac      = $_POST['fecha_nac'];
-$telefono       = $_POST['telefono'];
-$clave          = $_POST['clave'];
-$rut            = $_POST['rut'];
-$direccion      = $_POST['direccion'];
-
-// Consulta con variables
-$sql = "INSERT INTO `usuarios` 
-(`id_usuario`, `primer_nombre`, `segundo_nombre`, `ape_paterno`, `ape_materno`, `fecha_nac`, `telefono`, `clave`, `id_rol`, `rut`, `direccion`) 
-VALUES (NULL, '$primer_nombre', '$segundo_nombre', '$ape_paterno', '$ape_materno', '$fecha_nac', '$telefono', '$clave', 3, '$rut', '$direccion')";
+function insertarUsuario($conn, $primer_nombre, $segundo_nombre, $ape_paterno, $ape_materno, $fecha_nac, $telefono, $clave, $rut, $direccion) {
+    $sql = "INSERT INTO usuarios 
+            (primer_nombre, segundo_nombre, ape_paterno, ape_materno, fecha_nac, telefono, clave, id_rol, rut, direccion) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, 3, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sssssssss", $primer_nombre, $segundo_nombre, $ape_paterno, $ape_materno, $fecha_nac, $telefono, $clave, $rut, $direccion);
+    
+    return $stmt->execute();
+}
 ?>
+<?php
+function InsertarUsuarioAdmin($conn, $primer_nombre, $segundo_nombre, $ape_paterno, $ape_materno, $fecha_nac, $telefono, $clave, $id_rol, $rut, $direccion) {
+    $sql = "INSERT INTO usuarios 
+            (primer_nombre, segundo_nombre, ape_paterno, ape_materno, fecha_nac, telefono, clave, id_rol, rut, direccion) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+    // Preparar la consulta
+    $stmt = $conn->prepare($sql);
 
+    if (!$stmt) {
+        die("Error en la preparación de la consulta: " . $conn->error);
+    }
 
+    // Si id_rol es un número entero → usamos 'i', si no, todo 's'
+    $stmt->bind_param("ssssssssis", 
+        $primer_nombre,
+        $segundo_nombre,
+        $ape_paterno,
+        $ape_materno,
+        $fecha_nac,
+        $telefono,
+        $clave,
+        $id_rol,
+        $rut,
+        $direccion
+    );
 
+    // Ejecutar y verificar resultado
+    if (!$stmt->execute()) {
+        die("Error al ejecutar la consulta: " . $stmt->error);
+    }
 
-
+    return true;
+}
+?>

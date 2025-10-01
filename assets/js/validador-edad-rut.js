@@ -1,3 +1,4 @@
+ //Validación de edad (18+)
 document.querySelector(".formulario").addEventListener("submit", function(event) {
     const fechaNac = new Date(document.getElementById("fecha_nac").value);
     const hoy = new Date();
