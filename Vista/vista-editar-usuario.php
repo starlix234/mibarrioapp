@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Usuario</title>
 </head>
-<?php include("../Controlador/controlador-editar-usuario.php")?>
+<?php include('../Controlador/controlador-iniciar-admin.php')?>
+<?php include("../Controlador/controlador-mostrar-usuarios.php")?>
 <body> 
-    <?php while($fila=$resultado->fetch_assoc()) { ?>
-    <frorm action="../Controlador/controlador-editar-usuario.php" method="POST" enctype="formulario">
+    <?php while($fila=$lista_usuarios->fetch_assoc()) { ?>
+    <form action="../Controlador/controlador-editar-usuario.php" method="POST" enctype="formulario">
         <h2>Editar Usuario</h2>
-        <input type="text" name="id_usuario" value="<?php echo tmlspecialchars($fila['id_usuario'])?>">
+        <input type="text" name="id_usuario" value="<?php echo htmlspecialchars($fila['id_usuario'])?>">
         <label for="primer_nombre">Primer Nombre:</label>
-        <textarea type="text" id="primer_nombre" name="primer_nombre" required><?php echo tmlspecialchars($fila['primer_nombre'])?></textarea>    
+        <textarea type="text" id="primer_nombre" name="primer_nombre" required><?php echo htmlspecialchars($fila['primer_nombre'])?></textarea>    
         <label for="segundo_nombre">Segundo Nombre:</label>
         <textarea id="segundo_nombre" name="segundo_nombre"><?php echo htmlspecialchars($fila['segundo_nombre']); ?></textarea>
         <label for="ape_paterno">Apellido Paterno:</label>
@@ -27,7 +28,7 @@
         <label for="direccion">Dirección:</label>
         <textarea id="direccion" name="direccion" required><?php echo htmlspecialchars($fila['direccion']); ?></textarea>
         <button type="submit">Guardar Cambios</button>
-    </frorm>
+    </form>
     <?php } ?>
 </body>
 </html>

@@ -11,10 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ape_materno = $_POST['ape_materno'];
     $telefono = $_POST['telefono'];
     $clave = $_POST['clave'];
-    $direccion = $_POST['direccion'];
-
-    
-    $resultado = editarUsuario($conexion,
+    $direccion = $_POST['direccion'];    
+     $resultado = editarUsuario($conn,
      $id_usuario, 
      $primer_nombre, 
      $segundo_nombre,

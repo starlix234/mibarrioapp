@@ -11,5 +11,7 @@
 
      }
 
+     $lista_usuarios=$conn->query($sql2);
+     $filas_usuarios=$lista_usuarios->num_rows;
 
 ?>

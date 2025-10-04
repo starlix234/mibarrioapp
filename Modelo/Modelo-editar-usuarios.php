@@ -1,10 +1,10 @@
 <?php 
-function editarUsuario($conexion, $id_usuario, $primer_nombre, $segundo_nombre, $ape_paterno, $ape_materno, $telefono, $clave, $direccion) {
+function editarUsuario($conn, $id_usuario, $primer_nombre, $segundo_nombre, $ape_paterno, $ape_materno, $telefono, $clave, $direccion) {
     $sql = "UPDATE usuarios SET primer_nombre=?, segundo_nombre=?, ape_paterno=?, ape_materno=?, telefono=?, clave=?, direccion=? WHERE id_usuario=?";
-    $stmt = $conexion->prepare($sql);
+    $stmt = $conn->prepare($sql);
     if (!$stmt) {
-        return "Error en la preparación: " . $conexion->error;
-    }
+        return "Error en la preparación: " . $conn->error;
+     }
 
 
     
