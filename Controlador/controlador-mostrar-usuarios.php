@@ -10,7 +10,7 @@
         echo "<img src='".$m['foto']."'>";
 
      }
-
+    // para el panel de administracion 
      $lista_usuarios=$conn->query($sql2);
      $filas_usuarios=$lista_usuarios->num_rows;
 

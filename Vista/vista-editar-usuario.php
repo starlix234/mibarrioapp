@@ -7,12 +7,13 @@
     <title>Editar Usuario</title>
 </head>
 <?php include('../Controlador/controlador-iniciar-admin.php')?>
-<?php include("../Controlador/controlador-mostrar-usuarios.php")?>
+<?php include("../Controlador/controlador-lista-editar-usuario.php")?>
+
 <body> 
-    <?php while($fila=$lista_usuarios->fetch_assoc()) { ?>
+    <?php while($fila=$resultado3->fetch_assoc()) { ?>
     <form action="../Controlador/controlador-editar-usuario.php" method="POST" enctype="formulario">
         <h2>Editar Usuario</h2>
-        <input type="text" name="id_usuario" value="<?php echo htmlspecialchars($fila['id_usuario'])?>">
+        <input type="hidden" name="id_usuario" value="<?php echo htmlspecialchars($fila['id_usuario'])?>">
         <label for="primer_nombre">Primer Nombre:</label>
         <textarea type="text" id="primer_nombre" name="primer_nombre" required><?php echo htmlspecialchars($fila['primer_nombre'])?></textarea>    
         <label for="segundo_nombre">Segundo Nombre:</label>

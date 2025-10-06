@@ -19,12 +19,12 @@
             <th>Apellido Paterno</th>
             <th>Apellido Materno</th>
             <th>RUT</th>
-            <th>Correo</th>
             <th>Teléfono</th>
             <th>Dirección</th>
             <th>Foto</th>
             <th>Rol</th>
             <th>Acciones</th>
+            
         </tr>
     </thead>
     <tbody>
@@ -39,7 +39,7 @@
                 <td><?php echo htmlspecialchars($usuario['telefono']); ?></td>
                 <td><?php echo htmlspecialchars($usuario['direccion']); ?></td>
                 <td><img src="<?php echo htmlspecialchars($usuario['foto']); ?>" alt="Foto" width="50"></td>
-                <td><?php echo $usuario['id_rol']; ?></td>
+                <td><?php echo $usuario['rol']; ?></td>
                 <td>
                     <form action="../Vista/vista-editar-usuario.php" method="POST" style="display:inline;">
                         <input type="hidden" name="id_usuario" value="<?php echo $usuario['id_usuario']; ?>">

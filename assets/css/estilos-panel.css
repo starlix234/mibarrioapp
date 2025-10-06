@@ -1,0 +1,268 @@
+:root {
+  /* Colores de figuras humanas */
+  --color-azul-figura: #3B82F6;
+  --color-morado-figura: #8B5CF6;
+  --color-rosado-figura: #EC4899;
+
+  /* Elementos decorativos */
+  --color-arco-fondo: #60A5FA;
+  --color-corazon: #F472B6;
+
+  /* Tipografía */
+  --color-texto-principal: #1E3A8A; /* "BARRIO AP" */
+  --color-texto-secundario: #374151; /* "NUESTRA COMUNIDAD IMPORTA" */
+}
+
+/* --- Reset y base --- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #ecf0f1;
+      color: #2c3e50;
+      min-height: 100vh;
+    }
+
+    /* --- Estructura principal --- */
+    .admin-panel {
+      display: flex;
+      min-height: 100vh;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* --- Sidebar --- */
+    .sidebar {
+      width: 250px;
+      background: #2c3e50;
+      color: #fff;
+      flex-shrink: 0;
+      transition: left 0.3s ease-in-out;
+      padding: 20px 0;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.5em;
+      letter-spacing: 1px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar li {
+      padding: 15px 25px;
+    }
+
+    .sidebar a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background: #1abc9c;
+      border-left: 4px solid #16a085;
+      padding-left: 21px;
+    }
+
+    /* --- Botón hamburguesa --- */
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      top: 15px;
+      left: 15px;
+      z-index: 1001;
+      background: #2c3e50;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1.5em;
+      transition: background 0.3s;
+    }
+
+    .menu-toggle:hover {
+      background: #1a252f;
+    }
+
+    /* --- Overlay oscuro --- */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.4);
+      opacity: 0;
+      transition: opacity 0.3s;
+      z-index: 999;
+    }
+
+    .overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    /* --- Contenido principal --- */
+    .main-content {
+      flex: 1;
+      padding: 40px;
+      overflow-x: auto;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      color: #34495e;
+    }
+
+    p {
+      margin-bottom: 30px;
+      color: #555;
+    }
+
+    /* --- Tabla de usuarios --- */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px 15px;
+      text-align: left;
+    }
+
+    th {
+      background: #34495e;
+      color: white;
+    }
+
+    /* --- Botones --- */
+    button {
+      background-color: #3498db;
+      border: none;
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-right: 5px;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    button:nth-of-type(2) {
+      background-color: #e74c3c;
+    }
+
+    button:nth-of-type(2):hover {
+      background-color: #c0392b;
+    }
+
+    /* --- Adaptación a tablets --- */
+    @media (max-width: 1024px) {
+      .main-content {
+        padding: 30px;
+      }
+    }
+
+    /* --- Adaptación a móviles --- */
+    @media (max-width: 900px) {
+      .admin-panel {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        position: fixed;
+        left: -250px;
+        top: 0;
+        height: 100%;
+        z-index: 1000;
+      }
+
+      .sidebar.open {
+        left: 0;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .main-content {
+        padding: 20px;
+      }
+    }
+
+    /* --- Tabla tipo card en pantallas muy pequeñas --- */
+    @media (max-width: 600px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+      thead {
+        display: none;
+      }
+      tr {
+        margin-bottom: 15px;
+        background: #fff;
+        border-radius: 6px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      td {
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        text-align: left;
+      }
+      td:before {
+        position: absolute;
+        top: 12px;
+        left: 15px;
+        width: 45%;
+        white-space: nowrap;
+        font-weight: bold;
+        color: #34495e;
+      }
+      td:nth-of-type(1):before { content: "ID"; }
+      td:nth-of-type(2):before { content: "Nombre"; }
+      td:nth-of-type(3):before { content: "Email"; }
+      td:nth-of-type(4):before { content: "Acciones"; }
+    }
+
+    .modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.4);
+}
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto; 
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%; max-width: 400px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close:hover { color: #333; }

@@ -7,7 +7,6 @@
 </head>
 <?php include("../Controlador/controlador-mostrar-noticia.php")?>
 <body>
-
 <?php while ($fila2 = $mostrar2->fetch_assoc()) { ?>
     <form action="../Controlador/controlador-editar-noticia.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id_noticia" value="<?php echo htmlspecialchars($fila2['id_noticia']); ?>">
