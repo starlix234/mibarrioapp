@@ -1,57 +1,98 @@
-<!-- Botón para abrir la modal -->
-<button id="openModalBtn">Abrir Modal</button>
-
-<!-- Modal -->
-<div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close" id="closeModalBtn">&times;</span>
-    <h2>Título de la Modal</h2>
-    <p>Este es el contenido de la modal.</p>
-  </div>
-</div>
-
 <style>
-.modal {
-  display: none; 
-  position: fixed; 
-  z-index: 1000; 
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  overflow: auto; 
-  background-color: rgba(0,0,0,0.4);
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center; /* Centrar el contenedor de tarjetas */
+    align-items: center;
+    min-height: 100vh;
 }
-.modal-content {
-  background-color: #fff;
-  margin: 10% auto; 
-  padding: 20px;
-  border-radius: 8px;
-  width: 80%; max-width: 400px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap; /* Para que las tarjetas se envuelvan si hay muchas */
+    gap: 30px; /* Espacio entre tarjetas */
+    justify-content: center;
 }
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
+
+/* --- Estilo principal de la Tarjeta --- */
+.card {
+    width: 300px; /* Ancho fijo de la tarjeta */
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden; /* Asegura que la imagen respete el borde redondeado superior */
+    **box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);** /* Sombra para el efecto "elevado" */
+    transition: transform 0.3s ease;
 }
-.close:hover { color: #333; }
+
+.card:hover {
+    transform: translateY(-5px); /* Pequeño efecto al pasar el ratón */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-image {
+    width: 100%;
+    height: auto;
+    display: block; /* Elimina espacio extra debajo de la imagen */
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card-text {
+    color: #666;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.card-footer {
+    padding: 15px;
+    border-top: 1px solid #eee;
+    text-align: right;
+    background-color: #f9f9f9;
+}
+
+.card-link {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    padding: 5px 10px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.card-link:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+
+
 </style>
 
-<script>
-const modal = document.getElementById('myModal');
-const openBtn = document.getElementById('openModalBtn');
-const closeBtn = document.getElementById('closeModalBtn');
 
-openBtn.onclick = function() {
-  modal.style.display = "block";
-}
-closeBtn.onclick = function() {
-  modal.style.display = "none";
-}
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
+
+<div class="card-container">
+        <div class="card">
+            <img src="https://via.placeholder.com/300x200" alt="Imagen de la Tarjeta" class="card-image">
+            <div class="card-body">
+                <h3 class="card-title">Título de la Tarjeta</h3>
+                <p class="card-text">Este es un bloque de contenido conciso, ideal para mostrar una vista previa de información, un producto o un perfil.</p>
+            </div>
+            <div class="card-footer">
+                <a href="#" class="card-link">Leer más</a>
+            </div>
+  </div>

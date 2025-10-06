@@ -1,0 +1,31 @@
+.tarjetas{
+    border:4px solid black;
+    width:20rem;
+}
+body{
+    background-color: lightblue;
+}
+
+.contenedor-general{
+ display: flex;
+ gap:20px;
+ flex-direction: wrap;
+ width: 100%;
+ padding:10px;
+
+}
+@media (min-width:300px) and (max-width:600px){
+    .contenedor-general{
+        flex-direction: column;
+        align-items: center;
+    }
+    
+}
+@media (min-width:601px) and (max-width:900px){
+    .contenedor-general{
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+}
