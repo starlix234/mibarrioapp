@@ -16,6 +16,8 @@
     </style>
 </head>
 <body>
+<?php include('../Vista/vista-panel-admin.php')?>
+<?php include('../Vista/vista-agregar-usuarios.php')?>
 
     
 
