@@ -8,18 +8,9 @@
 		$row=$resource->fetch_assoc();
         $_SESSION['id_usuario']=$row['id_usuario'];
 	    $_SESSION["id_rol"]=$row['id_rol'];        
-        if($row['id_rol']==1){
-            header('Location:../Vista/vista-admin.php');
-        }
-        else{
-			if($row['id_rol']==2){
-                header('Location:../Vista/vista-jefe-Vecinos.php');
-            }else if($row['id_rol']==3){
-                    header('Location:../vista/vista-miembro-vecino.php');               
-                
-            }           
-
-        }
+        header('Location:../Vista/index.php');
+        
+       
 		
 	}else  { 
         $error="Usuario/Clave no registrados";

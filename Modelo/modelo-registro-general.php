@@ -1,5 +1,5 @@
 <?php
-function agregarUsuarioAdmin(
+function agregarUsuario(
     $primer_nombre,
     $segundo_nombre,
     $ape_paterno,

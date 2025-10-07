@@ -1,8 +1,8 @@
+<?php
+session_start(); // Iniciar sesión
 
-<?php require_once('../Modelo/Modelo-conexion.php');
-
-include("../Modelo/modelo-agregar-usuario-admin.php");
-
+require_once("../modelo/Modelo-conexion.php");
+require_once("../modelo/modelo-registro-general.php");
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -14,10 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fecha_nac = trim($_POST['fecha_nac'] ?? '');
     $telefono = trim($_POST['telefono'] ?? '');
     $clave = trim($_POST['clave'] ?? '');
-    $id_rol = intval($_POST['id_rol'] ?? 2); // por defecto usuario normal
     $rut = trim($_POST['rut'] ?? '');
     $direccion = trim($_POST['direccion'] ?? '');
     $correo = trim($_POST['correo'] ?? '');
+    $id_rol = 3; // Rol fijo: Miembro Vecino
 
     // Manejo de foto
     $foto = null;
@@ -32,8 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // Llamar al modelo
-    $resultado = agregarUsuarioAdmin(
+    // Llamar al modelo para registrar
+    $resultado = agregarUsuario(
         $primer_nombre,
         $segundo_nombre,
         $ape_paterno,
@@ -49,15 +49,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conn
     );
 
-    // Redirección con mensaje
     if ($resultado === 'existe') {
-        header("Location: ../Vista/vista-admin.php?mensaje=existe");
+        header("Location: ../Vista/index.php?mensaje=existe");
+        exit;
     } elseif ($resultado) {
-        header("Location: ../Vista/vista-admin.php?mensaje=exito");
-    } else {
-        header("Location: ../Vista/vista-admin.php?mensaje=error");
-    }
+        // Registro exitoso → iniciar sesión automáticamente
+        $usuarioId = $conn->insert_id; // Obtener id_usuario insertado
+        $_SESSION['id_usuario'] = $usuarioId;
+        $_SESSION['primer_nombre'] = $primer_nombre;
+        $_SESSION['id_rol'] = $id_rol;
 
-    exit;
+        // Redirigir al index
+        header("Location: ../index.php");
+        exit;
+    } else {
+        echo "error al registrar sus datos";
+    }
 }
 ?>

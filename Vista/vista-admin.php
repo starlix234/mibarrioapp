@@ -19,29 +19,40 @@
       <h2>Admin</h2>
       <ul>
         <li><a href="#">Dashboard</a></li>
-        <li><a href="#" class="active">Usuarios</a></li>
-        <li><a href="#">Ideas</a></li>
+        <li><a href="#">Usuarios</a></li>
+        <li><a href="#">Proyectos</a></li>
         <li><a href="#">Configuración</a></li>
-        <li><a href="#">Salir</a></li>
+        <li><a href="../Controlador/controlador-cerrar-sesion.php">salir</a></li>
       </ul>
     </nav>
 
     <!-- Contenido principal -->
     <main class="main-content">
-      <h1>Panel de Administración</h1>
+      <section id="usuarios">
+        <h1>Panel de Administración</h1>
       <p>Bienvenido al panel de administración. Aquí puedes gestionar usuarios, ideas y la configuración de la plataforma.</p>
 
       <h2>Usuarios</h2>
       <button id="openModalBtn">Agregar usuario</button>
 
      <div id="myModal" class="modal">
-  <div class="modal-content">
-    <span class="close" id="closeModalBtn">&times;</span>
+     <div class="modal-content">
+     <span class="close" id="closeModalBtn">&times;</span>
      <?php include('vista-agregar-usuarios.php')?>
-  </div>
-</div>
+     </div>
+     </div>
+     <div>
+     </div>
+       <?php include("vista-panel-admin.php")?>
+      </section>
+     <section id="proyectos">
+        <h2>Proyectos</h2>
 
-     <?php include("vista-panel-admin.php")?>
+      <?php include('vista-agregar-proyecto.php')?>
+
+     </section>
+
+
     
 
     </main>
@@ -65,6 +76,5 @@
     });
   </script>
   <script src="../assets/js/js-Modal.js"></script>
-// Obtener elementos del DOM
 </body>
 </html>
