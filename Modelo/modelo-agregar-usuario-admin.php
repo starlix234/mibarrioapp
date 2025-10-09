@@ -1,5 +1,5 @@
 <?php
-function agregarUsuarioAdmin(
+function agregarUsuario(
     $primer_nombre,
     $segundo_nombre,
     $ape_paterno,
@@ -14,47 +14,61 @@ function agregarUsuarioAdmin(
     $correo,
     $conn
 ) {
-    // Validar si el RUT o correo ya existen
-    $stmt_check = $conn->prepare("SELECT id_usuario FROM usuarios WHERE rut = ? OR correo = ?");
-    $stmt_check->bind_param("ss", $rut, $correo);
-    $stmt_check->execute();
-    $stmt_check->store_result();
+    try { 
+        // Validar si el RUT o correo ya existen
+        $sql_check = "SELECT id_usuario FROM usuarios WHERE rut = ? OR correo = ?";
+        $stmt_check = $conn->prepare($sql_check);
+        $stmt_check->bind_param("ss", $rut, $correo);
+        $stmt_check->execute();
+        $stmt_check->store_result();
 
-    if ($stmt_check->num_rows > 0) {
+        if ($stmt_check->num_rows > 0) {
+            return "El RUT o el correo ya están registrados.";
+        }
+
         $stmt_check->close();
-        return 'existe'; // RUT o correo ya registrados
+
+        // Insertar nuevo usuario (sin encriptar la clave)
+        $sql = "INSERT INTO usuarios (
+                    primer_nombre,
+                    segundo_nombre,
+                    ape_paterno,
+                    ape_materno,
+                    fecha_nac,
+                    telefono,
+                    clave,
+                    id_rol,
+                    rut,
+                    direccion,
+                    foto,
+                    correo
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param(
+            "ssssssssssss",
+            $primer_nombre,
+            $segundo_nombre,
+            $ape_paterno,
+            $ape_materno,
+            $fecha_nac,
+            $telefono,
+            $clave,   // SIN HASH
+            $id_rol,
+            $rut,
+            $direccion,
+            $foto,
+            $correo
+        );
+
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return "Error al insertar: " . $stmt->error;
+        }
+
+    } catch (Exception $e) {
+        return "Excepción: " . $e->getMessage();
     }
-    $stmt_check->close();
-
-    // Encriptar la clave
-    $clave_hash = password_hash($clave, PASSWORD_DEFAULT);
-
-    // Insertar usuario
-    $stmt = $conn->prepare("
-        INSERT INTO usuarios 
-        (primer_nombre, segundo_nombre, ape_paterno, ape_materno, fecha_nac, telefono, clave, id_rol, rut, direccion, foto, correo)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    ");
-
-    $stmt->bind_param(
-        "ssssssssssss",
-        $primer_nombre,
-        $segundo_nombre,
-        $ape_paterno,
-        $ape_materno,
-        $fecha_nac,
-        $telefono,
-        $clave_hash,
-        $id_rol,
-        $rut,
-        $direccion,
-        $foto,
-        $correo
-    );
-
-    $resultado = $stmt->execute();
-    $stmt->close();
-
-    return $resultado;
 }
 ?>

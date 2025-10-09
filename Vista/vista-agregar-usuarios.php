@@ -1,4 +1,5 @@
-<?php include("../Controlador/controlador-agregar-usuario.php"); ?>
+<?php include('../Controlador/controlador-iniciar-admin.php')?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,17 +8,8 @@
 	<link rel="stylesheet" href="../assets/css/formulario.css">
 </head>
 <body>
-	<h2>Agregar Usuario</h2>
-	<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar Usuario</title>
-</head>
-<body>
 
-<h2>Agregar Nuevo Usuario</h2>
+<h2>Agregar Nuevo Usuario</h2> 
 
 <form action="../Controlador/controlador-agregar-usuario.php" method="POST">
 

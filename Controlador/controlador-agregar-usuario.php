@@ -1,12 +1,8 @@
+<?php require("../modelo/modelo-conexion.php")?>
+<?php require("../modelo/modelo-agregar-usuario-admin.php")?>
+<?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-<?php require_once('../Modelo/Modelo-conexion.php');
-
-include("../Modelo/modelo-agregar-usuario-admin.php");
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    // Capturar datos del formulario
     $primer_nombre = trim($_POST['primer_nombre'] ?? '');
     $segundo_nombre = trim($_POST['segundo_nombre'] ?? '');
     $ape_paterno = trim($_POST['ape_paterno'] ?? '');
@@ -14,33 +10,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fecha_nac = trim($_POST['fecha_nac'] ?? '');
     $telefono = trim($_POST['telefono'] ?? '');
     $clave = trim($_POST['clave'] ?? '');
-    $id_rol = intval($_POST['id_rol'] ?? 2); // por defecto usuario normal
+    $id_rol = trim($_POST['id_rol'] ?? '');
     $rut = trim($_POST['rut'] ?? '');
     $direccion = trim($_POST['direccion'] ?? '');
     $correo = trim($_POST['correo'] ?? '');
+    $foto = '';
 
-    // Manejo de foto
-    $foto = null;
+    // Manejar carga de imagen si existe
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
-        $nombreArchivo = time() . '_' . basename($_FILES['foto']['name']);
-        $rutaDestino = '../uploads/' . $nombreArchivo;
-
-        if (!file_exists('../uploads')) mkdir('../uploads', 0777, true);
-
-        if (move_uploaded_file($_FILES['foto']['tmp_name'], $rutaDestino)) {
-            $foto = $nombreArchivo;
-        }
+        $nombreFoto = uniqid() . "_" . basename($_FILES['foto']['name']);
+        $rutaDestino = "../uploads/" . $nombreFoto;
+        move_uploaded_file($_FILES['foto']['tmp_name'], $rutaDestino);
+        $foto = $nombreFoto;
     }
 
-    // Llamar al modelo
-    $resultado = agregarUsuarioAdmin(
+    $resultado = agregarUsuario(
         $primer_nombre,
         $segundo_nombre,
         $ape_paterno,
         $ape_materno,
         $fecha_nac,
         $telefono,
-        $clave,
+        $clave,      // SIN HASH
         $id_rol,
         $rut,
         $direccion,
@@ -49,15 +40,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conn
     );
 
-    // Redirección con mensaje
-    if ($resultado === 'existe') {
-        header("Location: ../Vista/vista-admin.php?mensaje=existe");
-    } elseif ($resultado) {
-        header("Location: ../Vista/vista-admin.php?mensaje=exito");
+    if ($resultado === true) {
+        header("Location: ../Vista/index.php?mensaje=usuario_creado");
+        exit;
     } else {
-        header("Location: ../Vista/vista-admin.php?mensaje=error");
+        echo "<script>alert('Error: $resultado'); window.history.back();</script>";
     }
-
-    exit;
 }
+
+
+
+
 ?>
