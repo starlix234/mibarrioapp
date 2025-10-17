@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['id_rol'] = $id_rol;
 
         // Redirigir al index
-        header("Location: ../index.php");
+        header("Location: ../Vista/index.php");
         exit;
     } else {
         echo "error al registrar sus datos";

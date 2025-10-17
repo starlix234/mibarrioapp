@@ -26,8 +26,7 @@ function agregarUsuario(
     }
     $stmt_check->close();
 
-    // Encriptar la clave
-    $clave_hash = password_hash($clave, PASSWORD_DEFAULT);
+   
 
     // Insertar usuario
     $stmt = $conn->prepare("
@@ -44,7 +43,7 @@ function agregarUsuario(
         $ape_materno,
         $fecha_nac,
         $telefono,
-        $clave_hash,
+        $clave,
         $id_rol,
         $rut,
         $direccion,
